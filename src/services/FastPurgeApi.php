@@ -23,6 +23,7 @@ class FastPurgeApi extends Component
      */
     public function invalidateTags(array $tags): ResponseInterface
     {
+        /** @var \fork\akamaiinvalidator\models\Settings */
         $settings = AkamaiInvalidator::getInstance()->getSettings();
 
         $client = \Akamai\Open\EdgeGrid\Client::createFromEdgeRcFile(
