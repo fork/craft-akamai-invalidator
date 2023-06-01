@@ -32,6 +32,13 @@ use yii\base\Event;
  */
 class AkamaiInvalidator extends Plugin
 {
+    /**
+     * Whether cache tags get invalidated on entry save
+     *
+     * @var bool
+     */
+    public bool $invalidateOnSaveEnabled = true;
+
     public string $schemaVersion = '1.0.0';
 
     public static function config(): array
@@ -81,6 +88,11 @@ class AkamaiInvalidator extends Plugin
             Entry::class,
             Entry::EVENT_AFTER_SAVE,
             function(ModelEvent $event) {
+                if (!$this->invalidateOnSaveEnabled) {
+                    // Don't do anything when invalidation is disabled
+                    return;
+                }
+
                 /* @var Entry $entry */
                 $entry = $event->sender;
 
