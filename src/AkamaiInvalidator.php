@@ -37,7 +37,7 @@ class AkamaiInvalidator extends Plugin
      *
      * @var bool
      */
-    public bool $invalidateOnSaveEnabled = true;
+    public bool $invalidateOnSave = true;
 
     public string $schemaVersion = '1.0.0';
 
@@ -88,7 +88,7 @@ class AkamaiInvalidator extends Plugin
             Entry::class,
             Entry::EVENT_AFTER_SAVE,
             function(ModelEvent $event) {
-                if (!$this->invalidateOnSaveEnabled) {
+                if (!$this->invalidateOnSave) {
                     // Don't do anything when invalidation is disabled
                     return;
                 }
