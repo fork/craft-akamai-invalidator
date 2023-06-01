@@ -9,8 +9,10 @@ use craft\elements\Entry;
 use craft\events\ModelEvent;
 use craft\events\RegisterCacheOptionsEvent;
 use craft\helpers\ElementHelper;
+use craft\helpers\Queue;
 use craft\utilities\ClearCaches;
 use craft\web\View;
+use fork\akamaiinvalidator\jobs\InvalidateJob;
 use fork\akamaiinvalidator\models\Settings;
 use fork\akamaiinvalidator\services\CacheTags;
 use fork\akamaiinvalidator\services\FastPurgeApi;
@@ -66,7 +68,7 @@ class AkamaiInvalidator extends Plugin
                     'key' => 'akamai-invalidator',
                     'label' => Craft::t('akamai-invalidator', 'Akamai Cache'),
                     'action' => function() {
-                        AkamaiInvalidator::getInstance()->fastPurgeApi->invalidateTags(['all']);
+                        Queue::push(new InvalidateJob(['tags' => ['all']]));
                     },
                 ];
             }
@@ -92,8 +94,7 @@ class AkamaiInvalidator extends Plugin
                     return;
                 }
 
-                $tags = ['entry-' . $entry->id];
-                AkamaiInvalidator::getInstance()->fastPurgeApi->invalidateTags($tags);
+                Queue::push(new InvalidateJob(['tags' => ['entry-' . $entry->id]]));
             }
         );
 
