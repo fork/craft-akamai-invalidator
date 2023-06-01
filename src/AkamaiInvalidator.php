@@ -3,6 +3,7 @@
 namespace fork\akamaiinvalidator;
 
 use Craft;
+use craft\base\Model;
 use craft\base\Plugin;
 use craft\elements\Entry;
 use craft\events\ModelEvent;
@@ -10,6 +11,7 @@ use craft\events\RegisterCacheOptionsEvent;
 use craft\helpers\ElementHelper;
 use craft\utilities\ClearCaches;
 use craft\web\View;
+use fork\akamaiinvalidator\models\Settings;
 use fork\akamaiinvalidator\services\CacheTags;
 use fork\akamaiinvalidator\services\FastPurgeApi;
 use fork\akamaiinvalidator\services\LastModified;
@@ -123,5 +125,10 @@ class AkamaiInvalidator extends Plugin
                 $app->response->headers->add('Edge-Cache-Tag', $cacheTagsHeader);
             }
         );
+    }
+
+    protected function createSettingsModel(): ?Model
+    {
+        return new Settings();
     }
 }

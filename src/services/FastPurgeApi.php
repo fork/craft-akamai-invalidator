@@ -2,7 +2,7 @@
 
 namespace fork\akamaiinvalidator\services;
 
-use craft\helpers\App;
+use fork\akamaiinvalidator\AkamaiInvalidator;
 use Psr\Http\Message\ResponseInterface;
 use yii\base\Component;
 
@@ -24,9 +24,9 @@ class FastPurgeApi extends Component
     {
         $client = \Akamai\Open\EdgeGrid\Client::createFromEdgeRcFile();
 
-        $network = App::env('CRAFT_ENVIRONMENT') === 'production' ? 'production' : 'staging';
+        $network = AkamaiInvalidator::getInstance()->getSettings()->network;
 
-        $url = "/ccu/v3/invalidate/tag/$network";
+        $url = '/ccu/v3/invalidate/tag/' . $network;
 
         $response = $client->request('POST', $url, [
             'json' => [
