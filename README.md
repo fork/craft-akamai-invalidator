@@ -2,19 +2,19 @@
 
 Assign cache tags to pages and invalidate them on click/save.
 
+## Features
+
+-   Assigns a cache tag based on the entry ID to each response
+-   Assigns the `Last-Modified-At` header to each response
+-   Automatically invalidates the cache tag of an entry on save
+-   Invalidate the whole website via the `all` cache tag
+-   Add individual cache tags to pages via PHP
+
 ## Requirements
 
-This plugin requires Craft CMS 4.4.7.1 or later, and PHP 8.0.2 or later.
+This plugin requires Craft CMS 4.4.7.1 or later, and PHP 8.1 or later.
 
 ## Installation
-
-You can install this plugin from the Plugin Store or with Composer.
-
-#### From the Plugin Store
-
-Go to the Plugin Store in your project’s Control Panel and search for “akamai-invalidator”. Then press “Install”.
-
-#### With Composer
 
 Open your terminal and run the following commands:
 
@@ -28,3 +28,31 @@ composer require fork/craft-akamai-invalidator
 # tell Craft to install the plugin
 ./craft plugin/install akamai-invalidator
 ```
+
+## Configuration
+
+### Akamai authentication
+
+To generate your Akamai credentials, see [Create authentication credentials](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials).
+
+Place the `.edgerc` file at your Craft root.
+
+### Plugin configuration
+
+To configure the plugin, create a file `config/akamai-invalidator.php` with the following options:
+
+```php
+<?php
+
+return [
+    'network' => 'staging',
+    'edgeRcSection' => 'default',
+    'edgeRcPath' => '@root/.edgerc',
+];
+```
+
+#### Configuration options
+
+-   `network` — The Akamai network in which the invalidate takes place. Either `staging` or `production`.
+-   `edgeRcSection` — The credentials section within `.edgerc`
+-   `edgeRcPath` — The path to the `.edgerc` file. May use [Craft Aliases](https://craftcms.com/docs/4.x/config/#aliases).
