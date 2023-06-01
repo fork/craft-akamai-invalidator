@@ -4,6 +4,7 @@ namespace fork\akamaiinvalidator\services;
 
 use fork\akamaiinvalidator\AkamaiInvalidator;
 use Psr\Http\Message\ResponseInterface;
+use Yii;
 use yii\base\Component;
 
 /**
@@ -22,11 +23,14 @@ class FastPurgeApi extends Component
      */
     public function invalidateTags(array $tags): ResponseInterface
     {
-        $client = \Akamai\Open\EdgeGrid\Client::createFromEdgeRcFile();
+        $settings = AkamaiInvalidator::getInstance()->getSettings();
 
-        $network = AkamaiInvalidator::getInstance()->getSettings()->network;
+        $client = \Akamai\Open\EdgeGrid\Client::createFromEdgeRcFile(
+            $settings->edgeRcSection,
+            Yii::getAlias($settings->edgeRcPath)
+        );
 
-        $url = '/ccu/v3/invalidate/tag/' . $network;
+        $url = '/ccu/v3/invalidate/tag/' . $settings->network;
 
         $response = $client->request('POST', $url, [
             'json' => [
