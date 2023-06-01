@@ -1,14 +1,13 @@
-# akamai-invalidator
+# Craft Akamai Invalidator
 
-Assign cache tags to pages and invalidate them on click/save.
+Assign cache tags to pages and invalidate them on save.
 
 ## Features
 
--   Assigns a cache tag based on the entry ID to each response
--   Assigns the `Last-Modified-At` header to each response
--   Automatically invalidates the cache tag of an entry on save
--   Invalidate the whole website via the `all` cache tag
--   Add individual cache tags to pages via PHP
+-   Assigns a cache tag based on the entry ID to each response.
+-   Assigns the `Last-Modified-At` header to each response.
+-   Automatically invalidates the cache tag of an entry on save.
+-   Invalidate the whole website via the `all` cache tag.
 
 ## Requirements
 
@@ -56,3 +55,11 @@ return [
 -   `network` — The Akamai network in which the invalidate takes place. Either `staging` or `production`.
 -   `edgeRcSection` — The credentials section within `.edgerc`
 -   `edgeRcPath` — The path to the `.edgerc` file. May use [Craft Aliases](https://craftcms.com/docs/4.x/config/#aliases).
+
+---
+
+<div align="center">
+  <img src="https://github.fork.de/heart.png" width="38" height="41" alt="Fork Logo" />
+
+  <p>Brought to you by <a href="https://www.fork.de">Fork Unstable Media GmbH</a></p>
+</div>
