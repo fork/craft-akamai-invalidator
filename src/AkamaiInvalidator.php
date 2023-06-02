@@ -88,7 +88,10 @@ class AkamaiInvalidator extends Plugin
             Entry::class,
             Entry::EVENT_AFTER_SAVE,
             function(ModelEvent $event) {
-                if (!$this->invalidateOnSave) {
+                /** @var \fork\akamaiinvalidator\models\Settings */
+                $settings = AkamaiInvalidator::getInstance()->getSettings();
+
+                if (!$settings->getInvalidateOnSave()) {
                     // Don't do anything when invalidation is disabled
                     return;
                 }

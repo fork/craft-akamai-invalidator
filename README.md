@@ -44,6 +44,7 @@ To configure the plugin, create a file `config/akamai-invalidator.php` with the 
 <?php
 
 return [
+    'invalidateOnSave' => true,
     'network' => 'staging',
     'edgeRcSection' => 'default',
     'edgeRcPath' => '@root/.edgerc',
@@ -52,6 +53,7 @@ return [
 
 #### Configuration options
 
+-   `invalidateOnSave` — Whether the cache automatically gets invalidated on entry save
 -   `network` — The Akamai network in which the invalidate takes place. Either `staging` or `production`.
 -   `edgeRcSection` — The credentials section within `.edgerc`
 -   `edgeRcPath` — The path to the `.edgerc` file. May use [Craft Aliases](https://craftcms.com/docs/4.x/config/#aliases).

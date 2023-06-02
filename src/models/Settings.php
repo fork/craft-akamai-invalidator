@@ -7,6 +7,9 @@ use craft\helpers\App;
 
 class Settings extends Model
 {
+    /** @var bool */
+    public bool $invalidateOnSave = true;
+
     /** @var string */
     public string $network = 'staging';
 
@@ -15,6 +18,11 @@ class Settings extends Model
 
     /** @var string */
     public string $edgeRcPath = '@root/.edgerc';
+
+    public function getInvalidateOnSave(): bool
+    {
+        return App::parseBooleanEnv($this->invalidateOnSave);
+    }
 
     public function getNetwork(): string
     {
