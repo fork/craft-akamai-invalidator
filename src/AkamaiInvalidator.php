@@ -45,9 +45,9 @@ class AkamaiInvalidator extends Plugin
     {
         return [
             'components' => [
-                'cacheTags' => CacheTags::class,
-                'fastPurgeApi' => FastPurgeApi::class,
-                'lastModified' => LastModified::class,
+                'cacheTags' => ['class' => CacheTags::class],
+                'fastPurgeApi' => ['class' => FastPurgeApi::class],
+                'lastModified' => ['class' => LastModified::class],
             ],
         ];
     }
