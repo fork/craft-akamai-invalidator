@@ -1,5 +1,9 @@
 # Release Notes for akamai-invalidator
 
+## 1.2.1 - 2023-06-05
+
+-   Allow any Craft Element as source for the last-modified header
+
 ## 1.2.0 - 2023-06-02
 
 -   Add `invalidateOnSave` setting
