@@ -2,7 +2,7 @@
 
 namespace fork\akamaiinvalidator\services;
 
-use craft\elements\Entry;
+use craft\base\ElementInterface;
 use DateTime;
 use DateTimeZone;
 use yii\base\Component;
@@ -13,13 +13,13 @@ use yii\base\Component;
 class LastModified extends Component
 {
     /**
-     * Get the Last-Modified header value for an Entry
+     * Get the Last-Modified header value for an Element
      *
      * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Last-Modified
-     * @param Entry $entry The entry
+     * @param ElementInterface $entry The entry
      * @return string Timestamp at which $entry was last modified, formatted for the Last-Modified header
      */
-    public function getLastModifiedHeader(Entry $entry): string
+    public function getLastModifiedHeader(ElementInterface $entry): string
     {
         /** @var DateTime */
         $lastModified = $entry->dateUpdated;
