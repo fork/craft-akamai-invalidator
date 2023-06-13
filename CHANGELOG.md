@@ -1,5 +1,9 @@
 # Release Notes for akamai-invalidator
 
+## 1.3.0 - 2023-06-13
+
+-   Add enableInvalidateAll setting, disabled by default
+
 ## 1.2.1 - 2023-06-05
 
 -   Allow any Craft Element as source for the last-modified header
