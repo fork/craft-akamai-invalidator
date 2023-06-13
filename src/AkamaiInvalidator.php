@@ -64,22 +64,27 @@ class AkamaiInvalidator extends Plugin
 
     private function attachEventHandlers(): void
     {
-        /**
-         * Adds Craft cache option that invalidates all pages
-         */
-        Event::on(
-            ClearCaches::class,
-            ClearCaches::EVENT_REGISTER_CACHE_OPTIONS,
-            function(RegisterCacheOptionsEvent $event) {
-                $event->options[] = [
-                    'key' => 'akamai-invalidator',
-                    'label' => Craft::t('akamai-invalidator', 'Akamai Cache'),
-                    'action' => function() {
-                        Queue::push(new InvalidateJob(['tags' => ['all']]));
-                    },
-                ];
-            }
-        );
+        /** @var \fork\akamaiinvalidator\models\Settings */
+        $settings = AkamaiInvalidator::getInstance()->getSettings();
+
+        if ($settings->getEnableInvalidateAll()) {
+            /**
+             * Adds Craft cache option that invalidates all pages
+             */
+            Event::on(
+                ClearCaches::class,
+                ClearCaches::EVENT_REGISTER_CACHE_OPTIONS,
+                function(RegisterCacheOptionsEvent $event) {
+                    $event->options[] = [
+                        'key' => 'akamai-invalidator',
+                        'label' => Craft::t('akamai-invalidator', 'Akamai Cache'),
+                        'action' => function() {
+                            Queue::push(new InvalidateJob(['tags' => ['all']]));
+                        },
+                    ];
+                }
+            );
+        }
 
         /**
          * Invalidates individual entries after they are saved

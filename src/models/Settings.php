@@ -10,6 +10,9 @@ class Settings extends Model
     /** @var bool */
     public bool $invalidateOnSave = true;
 
+    /** @var bool */
+    public bool $enableInvalidateAll = false;
+
     /** @var string */
     public string $network = 'staging';
 
@@ -22,6 +25,11 @@ class Settings extends Model
     public function getInvalidateOnSave(): bool
     {
         return App::parseBooleanEnv($this->invalidateOnSave);
+    }
+
+    public function getEnableInvalidateAll(): bool
+    {
+        return App::parseBooleanEnv($this->enableInvalidateAll);
     }
 
     public function getNetwork(): string
@@ -42,6 +50,8 @@ class Settings extends Model
     public function defineRules(): array
     {
         return [
+            ['invalidateOnSave', 'boolean'],
+            ['enableInvalidateAll', 'boolean'],
             ['network', 'string'],
             ['edgeRcSection', 'string'],
             ['edgeRcPath', 'string'],
