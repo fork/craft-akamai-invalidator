@@ -7,19 +7,14 @@ use craft\helpers\App;
 
 class Settings extends Model
 {
-    /** @var bool */
     public bool $invalidateOnSave = true;
 
-    /** @var bool */
     public bool $enableInvalidateAll = false;
 
-    /** @var string */
     public string $network = 'staging';
 
-    /** @var string */
     public string $edgeRcSection = 'default';
 
-    /** @var string */
     public string $edgeRcPath = '@root/.edgerc';
 
     public function getInvalidateOnSave(): bool
