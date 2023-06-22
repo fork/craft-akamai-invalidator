@@ -1,5 +1,9 @@
 # Release Notes for akamai-invalidator
 
+## 1.4.0 - 2023-06-22
+
+-   Remove the automatic Last-Modified header
+
 ## 1.3.0 - 2023-06-13
 
 -   Add enableInvalidateAll setting, disabled by default
