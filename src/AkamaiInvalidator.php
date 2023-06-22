@@ -16,7 +16,6 @@ use fork\akamaiinvalidator\jobs\InvalidateJob;
 use fork\akamaiinvalidator\models\Settings;
 use fork\akamaiinvalidator\services\CacheTags;
 use fork\akamaiinvalidator\services\FastPurgeApi;
-use fork\akamaiinvalidator\services\LastModified;
 use yii\base\Event;
 
 /**
@@ -28,7 +27,6 @@ use yii\base\Event;
  * @license MIT
  * @property-read CacheTags $cacheTags
  * @property-read FastPurgeApi $fastPurgeApi
- * @property-read LastModified $lastModified
  */
 class AkamaiInvalidator extends Plugin
 {
@@ -47,7 +45,6 @@ class AkamaiInvalidator extends Plugin
             'components' => [
                 'cacheTags' => ['class' => CacheTags::class],
                 'fastPurgeApi' => ['class' => FastPurgeApi::class],
-                'lastModified' => ['class' => LastModified::class],
             ],
         ];
     }
@@ -135,10 +132,6 @@ class AkamaiInvalidator extends Plugin
                 if ($entry) {
                     // Attach an entry-specific cache tag that is used to invalidate pages including specific entries
                     AkamaiInvalidator::getInstance()->cacheTags->addCacheTag('entry-' . $entry->id);
-
-                    // Add Last-Modified header to the response to support invalidation
-                    $lastModified = AkamaiInvalidator::getInstance()->lastModified->getLastModifiedHeader($entry);
-                    $app->response->headers->add('Last-Modified', $lastModified);
                 }
 
                 // Collect and add all cache tags to the response

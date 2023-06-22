@@ -5,7 +5,6 @@ Assign cache tags to pages and invalidate them on save.
 ## Features
 
 -   Assigns a cache tag based on the entry ID to each response.
--   Assigns the `Last-Modified-At` header to each response.
 -   Automatically invalidates the cache tag of an entry on save.
 -   Invalidate the whole website via the `all` cache tag.
 
