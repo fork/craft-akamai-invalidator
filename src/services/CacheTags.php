@@ -19,7 +19,9 @@ class CacheTags extends Component
      */
     public function addCacheTag(string $tag): void
     {
-        array_push($this->cacheTags, $tag);
+        if (!in_array($tag, $this->cacheTags)) {
+            array_push($this->cacheTags, $tag);
+        }
     }
 
     /**
