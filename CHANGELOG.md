@@ -1,5 +1,9 @@
 # Release Notes for akamai-invalidator
 
+## 1.4.1 - 2023-12-01
+
+-   Prevent duplicate cache tags
+
 ## 1.4.0 - 2023-06-22
 
 -   Remove the automatic Last-Modified header
