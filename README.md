@@ -62,7 +62,6 @@ return [
 ---
 
 <div align="center">
-  <img src="https://github.fork.de/heart.png" width="38" height="41" alt="Fork Logo" />
-
+  <a href="https://www.fork.de"><img src="./assets/heart.png" width="38" height="41" alt="Fork Logo" /></a>
   <p>Brought to you by <a href="https://www.fork.de">Fork Unstable Media GmbH</a></p>
 </div>
